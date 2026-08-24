@@ -30,13 +30,13 @@ class CalendarEventRequestTest {
                 new CalendarEventRequest("Dişçi randevusu", startsAt);
 
 
-        assertEquals("Dişçi randevusu",request.title());
+        assertEquals("Dişçi randevusu", request.title());
         assertEquals(startsAt, request.startsAt());
     }
 
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = {"","  "})
+    @ValueSource(strings = {"", "  "})
     void shouldRejectBlankTitle(String title) {
 
         ZonedDateTime startsAt = ZonedDateTime.of(
