@@ -14,31 +14,15 @@ class CalendarToolContractTest {
 
     @Test
     void shouldReturnScheduledCalendarEvent() {
-        ZonedDateTime startsAt = ZonedDateTime.of(
-                2026,
-                8,
-                29,
-                14,
-                30,
-                0,
-                0,
-                ZoneId.of("Europe/Istanbul")
-        );
+        ZonedDateTime startsAt = ZonedDateTime.of(2026, 8, 29, 14, 30, 0, 0, ZoneId.of("Europe/Istanbul"));
 
-        CalendarEventRequest request =
-                new CalendarEventRequest("Dişçi randevusu", startsAt);
+        CalendarEventRequest request = new CalendarEventRequest("Dişçi randevusu", startsAt);
 
         UUID eventId = UUID.randomUUID();
 
-        CalendarTool calendarTool = incomingRequest ->
-                new ScheduledCalendarEvent(
-                        eventId,
-                        incomingRequest.title(),
-                        incomingRequest.startsAt()
-                );
+        CalendarTool calendarTool = incomingRequest -> new ScheduledCalendarEvent(eventId, incomingRequest.title(), incomingRequest.startsAt());
 
-        ScheduledCalendarEvent result =
-                calendarTool.schedule(request);
+        ScheduledCalendarEvent result = calendarTool.schedule(request);
 
         assertEquals(eventId, result.eventId());
         assertEquals("Dişçi randevusu", result.title());

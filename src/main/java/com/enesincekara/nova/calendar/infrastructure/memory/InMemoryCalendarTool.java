@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public final class InMemoryCalendarTool implements CalendarTool {
 
-    private final Map<UUID,ScheduledCalendarEvent> eventsById = new HashMap<>();
+    private final Map<UUID, ScheduledCalendarEvent> eventsById = new HashMap<>();
 
 
     @Override
@@ -19,12 +19,7 @@ public final class InMemoryCalendarTool implements CalendarTool {
 
         UUID eventId = UUID.randomUUID();
 
-        ScheduledCalendarEvent scheduledEvent =
-                new ScheduledCalendarEvent(
-                        eventId,
-                        request.title(),
-                        request.startsAt()
-                );
+        ScheduledCalendarEvent scheduledEvent = new ScheduledCalendarEvent(eventId, request.title(), request.startsAt());
         eventsById.put(eventId, scheduledEvent);
         return scheduledEvent;
     }

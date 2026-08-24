@@ -13,22 +13,11 @@ class InMemoryCalendarToolTest {
 
     @Test
     void shouldScheduleAndStoreCalendarEvent() {
-        ZonedDateTime startsAt = ZonedDateTime.of(
-                2026,
-                8,
-                29,
-                14,
-                30,
-                0,
-                0,
-                ZoneId.of("Europe/Istanbul")
-        );
+        ZonedDateTime startsAt = ZonedDateTime.of(2026, 8, 29, 14, 30, 0, 0, ZoneId.of("Europe/Istanbul"));
 
-        CalendarEventRequest request =
-                new CalendarEventRequest("Dişçi randevusu", startsAt);
+        CalendarEventRequest request = new CalendarEventRequest("Dişçi randevusu", startsAt);
 
-        InMemoryCalendarTool calendarTool =
-                new InMemoryCalendarTool();
+        InMemoryCalendarTool calendarTool = new InMemoryCalendarTool();
 
 
         var result = calendarTool.schedule(request);
@@ -37,9 +26,6 @@ class InMemoryCalendarToolTest {
         assertEquals(request.title(), result.title());
         assertEquals(request.startsAt(), result.startsAt());
 
-        assertEquals(
-                result,
-                calendarTool.findById(result.eventId()).orElseThrow()
-        );
+        assertEquals(result, calendarTool.findById(result.eventId()).orElseThrow());
     }
 }
