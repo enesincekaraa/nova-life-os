@@ -3,12 +3,14 @@ package com.enesincekara.nova.calendar.infrastructure.memory;
 import com.enesincekara.nova.calendar.application.tool.CalendarTool;
 import com.enesincekara.nova.calendar.domain.CalendarEventRequest;
 import com.enesincekara.nova.calendar.domain.ScheduledCalendarEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+@Component
 public final class InMemoryCalendarTool implements CalendarTool {
 
     private final Map<UUID, ScheduledCalendarEvent> eventsById = new HashMap<>();
